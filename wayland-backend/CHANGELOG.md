@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+#### Breaking changes
+
+- `Argument::Str` now contains an `Option`, which is correctly mapped to nullable strings. This fixes
+  segfaults that previously occurred dereferencing the null pointer in the system backend.
+
 ## 0.1.0-beta.7
 
 #### Bugfixes

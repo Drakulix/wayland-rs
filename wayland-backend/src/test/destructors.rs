@@ -101,9 +101,9 @@ expand_test!(destructor_request, {
                 0,
                 [
                     Argument::Uint(1),
-                    Argument::Str(Box::new(
+                    Argument::Str(Some(Box::new(
                         CString::new(interfaces::TEST_GLOBAL_INTERFACE.name.as_bytes()).unwrap(),
-                    )),
+                    ))),
                     Argument::Uint(3),
                     Argument::NewId(client_backend::Backend::null_id()),
                 ],
@@ -162,9 +162,9 @@ expand_test!(destructor_cleanup, {
                 0,
                 [
                     Argument::Uint(1),
-                    Argument::Str(Box::new(
+                    Argument::Str(Some(Box::new(
                         CString::new(interfaces::TEST_GLOBAL_INTERFACE.name.as_bytes()).unwrap(),
-                    )),
+                    ))),
                     Argument::Uint(3),
                     Argument::NewId(client_backend::Backend::null_id()),
                 ],
