@@ -16,6 +16,28 @@ pub mod idle_notify {
 }
 
 #[cfg(feature = "staging")]
+pub mod image_source {
+    #[allow(missing_docs)]
+    pub mod v1 {
+        wayland_protocol!(
+            "./protocols/staging/ext-image-source/ext-image-source-v1.xml",
+            [crate::ext::foreign_toplevel_list::v1]
+        );
+    }
+}
+
+#[cfg(feature = "staging")]
+pub mod screencopy {
+    #[allow(missing_docs)]
+    pub mod v1 {
+        wayland_protocol!(
+            "./protocols/staging/ext-screencopy/ext-screencopy-v1.xml",
+            [crate::ext::image_source::v1]
+        );
+    }
+}
+
+#[cfg(feature = "staging")]
 pub mod session_lock {
     //! This protocol allows for a privileged Wayland client to lock the session
     //! and display arbitrary graphics while the session is locked.
