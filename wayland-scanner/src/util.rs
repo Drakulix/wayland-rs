@@ -73,7 +73,7 @@ pub fn is_keyword(txt: &str) -> bool {
 }
 
 pub fn is_camel_keyword(txt: &str) -> bool {
-    matches!(txt, "Self")
+    matches!(txt, "Self" | "Option")
 }
 
 pub fn snake_to_camel(input: &str) -> String {
