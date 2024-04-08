@@ -96,7 +96,9 @@ impl<D> ObjectData<D> for ProtocolErrorData {
 /// of associated user data.
 ///
 /// Its behavior is similar to the [`Dispatch`](crate::Dispatch) trait.
-pub trait GlobalDispatch<I: Resource, GlobalData, State = Self>: Sized {
+pub trait GlobalDispatch<I: Resource, GlobalData, State = Self, ForwardedFrom = State>:
+    Sized
+{
     /// Called when a client has bound this global.
     ///
     /// The return value of this function should contain user data to associate the object created by the
@@ -107,7 +109,7 @@ pub trait GlobalDispatch<I: Resource, GlobalData, State = Self>: Sized {
         client: &Client,
         resource: New<I>,
         global_data: &GlobalData,
-        data_init: &mut DataInit<'_, State>,
+        data_init: &mut DataInit<'_, ForwardedFrom>,
     );
 
     /// Checks if the global should be advertised to some client.
