@@ -84,7 +84,7 @@ use crate::{Client, DisplayHandle, Resource};
 /// implementation of [`Dispatch`] cannot be used directly as the dispatching state, as rustc
 /// currently fails to understand that it also provides `Dispatch<I, U, Self>` (assuming all other
 /// trait bounds are respected as well).
-pub trait Dispatch<I: Resource, UserData, State = Self>: Sized {
+pub trait Dispatch<I: Resource, UserData, State = Self, ForwardedFrom = State>: Sized {
     /// Called when a request from a client is processed.
     ///
     /// The implementation of this function will vary depending on what protocol is being implemented. Typically
@@ -97,7 +97,7 @@ pub trait Dispatch<I: Resource, UserData, State = Self>: Sized {
         request: I::Request,
         data: &UserData,
         dhandle: &DisplayHandle,
-        data_init: &mut DataInit<'_, State>,
+        data_init: &mut DataInit<'_, ForwardedFrom>,
     );
 
     /// Called when the object this user data is associated with has been destroyed.
